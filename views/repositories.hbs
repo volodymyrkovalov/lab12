@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>App</title>
+  </head>
+  <body
+    style='display: flex; flex-direction: column; align-items: center; background-color: rgb(197, 197, 248); font-family:Arial, Helvetica, sans-serif'
+  >
+    <h1>REPOSITORIES</h1>
+    <button>
+      <a href='/'>Go to todo list</a>
+    </button><br /><br />
+    <form action='repo' method='POST'>
+      <label>Name</label>
+      <input name='name' /><br />
+      <label>Url</label>
+      <input name='url' /><br />
+      <input type='submit' value='Post a repository' />
+    </form>
+
+    <ul>
+      {{#each repositories}}
+        <h3>{{this.name}}</h3>
+        <li>URL: {{this.url}}</li>
+      {{/each}}
+    </ul>
+
+  </body>
+</html>

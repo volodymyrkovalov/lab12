@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>App</title>
+  </head>
+  <body
+    style='display: flex; flex-direction: column; align-items: center; background-color: rgb(197, 197, 248); font-family:Arial, Helvetica, sans-serif'
+  >
+    <h1>TODO LIST</h1>
+    <button>
+      <a href='repositories'>Go to repos</a>
+    </button><br /><br />
+    <form action='task' method='POST'>
+      <label>Title</label>
+      <input name='title' /><br />
+      <label>Content</label>
+      <input name='content' /><br />
+      <label>Url</label>
+      <input name='url' /><br />
+      <label>Repository Url</label>
+      <input name='repositoryUrl' /><br />
+      <input type='submit' value='Post a task' />
+    </form>
+
+    <h2>Find a task</h2>
+    <form action='' method='GET'>
+      <input name='title' /><br />
+      <input type='submit' value='Search a task by title' />
+    </form>
+    <h2>List of tasks</h2>
+    <form action='shuffle' method='POST'>
+      <input type='submit' value='Shuffle' />
+    </form>
+    <form action='sort?sort=dec' method='POST'>
+      <input type='submit' value='From newest to oldest' />
+    </form>
+    <form action='sort?sort=asc' method='POST'>
+      <input type='submit' value='From oldest to newest' />
+    </form>
+    <form action='mergeSort' method='POST'>
+      <input type='submit' value='MergeSort' />
+    </form>
+    <form action='quickSort' method='POST'>
+      <input type='submit' value='QuickSort' />
+    </form>
+    <form action='insertionSort' method='POST'>
+      <input type='submit' value='InsertionSort' />
+    </form>
+    <ul>
+      {{#each tasks}}
+        <h3>{{this.title}}</h3>
+        <li>{{this.content}}</li>
+        <li>URL: {{this.repoUrl}}/{{this.url}}</li>
+        <li>Created at: {{this.createDate}}</li>
+        <li>Updated at: {{this.updateDate}}</li>
+        <form action='task/delete/{{this.url}}' method='POST'>
+          <input type='submit' value='Delete a task' />
+        </form>
+        <form action='task/archieve/{{this.url}}' method='POST'>
+          <input type='submit' value='Archieve a task' />
+        </form>
+      {{/each}}
+    </ul>
+    <h2>Archieved</h2>
+    <ul>
+      {{#each archievedTasks}}
+        <h3>{{this.title}}</h3>
+        <li>{{this.content}}</li>
+        <li>URL: {{this.url}}</li>
+        <li>Created at: {{this.createDate}}</li>
+        <li>Updated at: {{this.updateDate}}</li>
+        <form action='task/unarchieve/{{this.url}}' method='POST'>
+          <input type='submit' value='Unarchieve a task' />
+        </form>
+      {{/each}}
+    </ul>
+  </body>
+</html>
